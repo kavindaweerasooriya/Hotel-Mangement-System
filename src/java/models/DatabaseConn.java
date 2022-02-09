@@ -29,19 +29,22 @@ public class DatabaseConn {
         }
     }
 
+ 
+
     //TODO: change to a prepaired statement
     public user GetUserByEmail(String email, String password) throws SQLException, ClassNotFoundException {
-        String query = "SELECT * FROM Customers WHERE email = " + email;
-        user u = new user("EMPTY", "EMPTY");
-        try (Statement stmt = createConnection().createStatement()) {
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
+        PreparedStatement ps = createConnection().PreparedStatement("SELECT * FROM Customers WHERE email = ? AND password = ?");
+        ps.setString(1,email) 
+        ps.setString(1,password)
+        ResultSet rs = ps.executeQuery();
+        user u = new user("EMPTY","EMPTY");
+        while (rs.next()) {
                 String email_result = rs.getString("email");
                 String password_result = rs.getString("password");
+                String user_id = rs.getString("ID")
                 u.email = email_result;
                 u.password = password_result;
-            }
-        } catch (SQLException e) {
+                u.id = user_id;
         }
         return u;
     }

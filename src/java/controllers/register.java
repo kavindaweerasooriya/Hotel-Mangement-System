@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import models.*;
 import services.*;
+import java.lang.Math;
 
 public class register extends HttpServlet {
 
@@ -35,7 +36,7 @@ public class register extends HttpServlet {
                     response.sendRedirect("/Management-System/home");
                 } else {
                     try (PrintWriter out = response.getWriter()) {
-                        out.println("<h> Registration failed </h1>");
+                        out.println("<h1> Registration failed </h1>");
                     }
                 }
             } catch (Exception ex) {
@@ -45,6 +46,7 @@ public class register extends HttpServlet {
         } else if ("GET".equals(request.getMethod())) {
             Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, "Get called");
             DatabaseConn conn = new DatabaseConn();
+            request.setAttribute("user_id",(int) ((Math.random() * (10000000 - 900)) + 900));
             request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
 
         }

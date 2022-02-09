@@ -28,7 +28,7 @@ public class booking extends HttpServlet {
                 String userEmail = (String) session.getAttribute("userEmail");
                 String userId = (String) session.getAttribute("user_id");
                 if (userEmail == null) {
-                    response.sendRedirect("/Management-System/register");
+                    response.sendRedirect("/Management-System/login");
                 } else {
                     try {
                         boolean result = conn.CreateOrder(userId, orderId);

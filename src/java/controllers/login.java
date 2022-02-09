@@ -22,18 +22,23 @@ public class login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet login</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet login at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+       if("POST".equals(request.getMethod())){
+            DatabaseConn conn = new DatabaseConn();
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+            user u = conn.GetUserByEmail(email,password);
+           if(u.email == "EMPTY" || u.password == "EMPTY"){
+               System.out.println("User not logged in")
+           }else{
+                HttpSession session = request.getSession();
+                session.setAttribute("userEmail", email);
+                session.setAttribute("user_id",user_id)
+                session.setMaxInactiveInterval(30 * 60);
+                response.sendRedirect("/Management-System/home");
+           }       
+       }else if("GET".equals(request.getMethod())){
+           //handle get requests
+       }
     }
 
   

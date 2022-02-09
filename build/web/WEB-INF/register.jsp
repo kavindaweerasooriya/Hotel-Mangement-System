@@ -42,7 +42,7 @@
                                     <form method="POST" action="./register" id="form">
                                         <input name="user_id" readonly id="user_id" value="${user_id}"  type="hidden"/>
                                         <input name="email" placeholder="enter your email" required />
-                                        <input name="password" placeholder="enter your password" required />
+                                        <input name="password" type="password" placeholder="enter your password" required />
                                         <input type="submit" value="Register" />
                                     </form>
                                 </div>

@@ -204,7 +204,6 @@
                     console.log('Something went wrong', err);
                 }
             }).render('#paypal-button-container');
-            alert(orderID);
         }
     </script>
     <script src="https://shaneumayanga.com/hotel/js/jquery-2.1.4.min.js"></script>

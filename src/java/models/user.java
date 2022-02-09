@@ -12,8 +12,10 @@ package models;
 public class user {
     String email;
     String password;
-    public user(String email, String password) {
+    String id; 
+    public user(String email, String password. String id) {
         this.email = email;
         this.password = password;
+        this.id = id;
     }
 }
